@@ -1,9 +1,9 @@
-import { INote } from '@common/@types';
+import { Collections, INote } from '@common/@types';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 import * as mongoosePaginate from 'mongoose-paginate-v2';
 
-@Schema({ collection: 'notes', timestamps: true })
+@Schema({ collection: Collections.NOTES, timestamps: true })
 export class NoteModel implements INote {
   @Prop({ required: true })
   title: string;
@@ -12,6 +12,11 @@ export class NoteModel implements INote {
   content: string;
 }
 
-export type NoteDocument = NoteModel & Document;
+export type NoteDocument = NoteModel &
+  Document & {
+    createdAt: Date;
+    updatedAt: Date;
+  };
+
 export const NoteSchema = SchemaFactory.createForClass(NoteModel);
 NoteSchema.plugin(mongoosePaginate);

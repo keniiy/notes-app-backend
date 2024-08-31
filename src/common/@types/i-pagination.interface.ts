@@ -1,15 +1,16 @@
 export interface PaginateResult<T> {
+  [key: string]: any;
   docs: T[];
   totalDocs: number;
-  offset: number;
   limit: number;
   totalPages: number;
   page?: number;
   pagingCounter: number;
   hasPrevPage: boolean;
   hasNextPage: boolean;
-  prevPage?: number | null;
-  nextPage?: number | null;
+  prevPage?: number;
+  nextPage?: number;
+  offset: number;
 }
 
 export interface PaginationOptions {

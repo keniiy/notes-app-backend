@@ -5,8 +5,7 @@ import {
   ClientSession,
   QueryOptions,
 } from 'mongoose';
-import { PaginateResult } from '@common/@types';
-import { FindMany } from './find-many.interface';
+import { FindMany, PaginateResult } from '@common/@types';
 
 export interface IAbstractRepository<T extends Document> {
   /**

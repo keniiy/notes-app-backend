@@ -20,5 +20,10 @@
     "paths": {
       "@common/*": ["src/common/*"]
     }
-  }
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/common/@types/**/*.d.ts"
+  ],
+  "exclude": ["node_modules"]
 }
