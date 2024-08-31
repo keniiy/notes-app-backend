@@ -13,6 +13,9 @@ export class NoteResponseDto {
   content: string;
 
   @ApiProperty({ example: '2024-08-31T01:41:20.407Z' })
+  timestamp: Date;
+
+  @ApiProperty({ example: '2024-08-31T01:41:20.407Z' })
   createdAt: Date;
 
   @ApiProperty({ example: '2024-08-31T01:41:20.407Z' })
@@ -27,6 +30,7 @@ export class NoteResponseDto {
     this.id = note._id.toString();
     this.title = note.title;
     this.content = note.content;
+    this.timestamp = note.timestamp;
     this.createdAt = note.createdAt;
     this.updatedAt = note.updatedAt;
   }

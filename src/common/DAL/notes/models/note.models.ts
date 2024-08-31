@@ -10,6 +10,9 @@ export class NoteModel implements INote {
 
   @Prop({ required: true })
   content: string;
+
+  @Prop({ required: true })
+  timestamp: Date;
 }
 
 export type NoteDocument = NoteModel &
