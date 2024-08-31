@@ -1,73 +1,130 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# Notes API
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+Welcome to the Notes API, a simple service built using the NestJS framework. This API allows users to create, retrieve, and delete notes, like any other basic note-taking application.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## Features
 
-## Description
+- **Create Notes**: Add new notes with a title and content.
+- **Retrieve Notes**: Fetch all notes with pagination support or retrieve a single note by its ID.
+- **Delete Notes**: Remove a note by its ID.
+- **API Documentation**: Easily accessible Swagger UI documentation for all available endpoints.
+- **Basic Authentication**: Secured API documentation with basic authentication.
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## Prerequisites
 
-## Installation
+Before you begin, ensure you have the following installed:
+
+- **Node.js**: v14.x or higher
+- **pnpm**: v7.x or higher (If you don’t have pnpm, install it globally using npm: `npm install -g pnpm`)
+- **MongoDB**: A running MongoDB instance (local or remote)
+
+## Setup Instructions
+
+### 1. Clone the Repository
+
+Start by cloning the repository to your local machine:
 
 ```bash
-$ pnpm install
+git clone https://github.com/yourusername/notes-api.git
+cd notes-api
 ```
 
-## Running the app
+
+
+### 2. Install Dependencies
+
+Install all necessary dependencies using pnpm:
 
 ```bash
-# development
-$ pnpm run start
-
-# watch mode
-$ pnpm run start:dev
-
-# production mode
-$ pnpm run start:prod
+pnpm install
 ```
 
-## Test
+### 3. Configure Environment Variables
+
+Create a .env file in the root of the project directory with the following content:
+
+```plaintext
+# Application Port
+PORT=3000
+
+# Environment
+NODE_ENV=development
+
+# Swagger Configuration
+SWAGGER_TITLE=Notes API
+SWAGGER_DESCRIPTION=API documentation for the Notes service
+SWAGGER_VERSION=1.0
+SERVICE_NAME=notes
+
+# Swagger Basic Authentication
+SWAGGER_USER=admin
+SWAGGER_PASSWORD=password
+
+# Production CORS Origin (For production environment)
+PRODUCTION_ORIGIN=https://your-production-domain.com
+
+# Database URI
+DATABASE_URL=your-mongodb-connection-string
+
+# Throttle Setup
+THROTTLE_TTL=60
+THROTTLE_LIMIT=10
+```
+
+Replace your-mongodb-connection-string with your actual MongoDB connection URI.
+
+### 4. Running the Application
+
+You can run the application in different modes depending on your environment:
+
+### Development Mode
+
+To start the app in development mode (with hot-reload):
 
 ```bash
-# unit tests
-$ pnpm run test
-
-# e2e tests
-$ pnpm run test:e2e
-
-# test coverage
-$ pnpm run test:cov
+pnpm run start:dev
 ```
 
-## Support
+### Production Mode
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+To run the app in production mode:
 
-## Stay in touch
+```bash
+pnpm run start:prod
+```
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+### 5. Accessing the API
 
-## License
+Once the application is running, you can access the API at http://localhost:3000.
 
-Nest is [MIT licensed](LICENSE).
+### 6. API Documentation
+
+The API documentation is available at http://localhost:3000/api. You’ll need to authenticate using the Swagger credentials provided in the .env file (SWAGGER_USER and SWAGGER_PASSWORD).
+
+## Testing
+
+The application includes some pre-built tests to ensure the basic functionality is working as expected. However, a complete testing setup is not yet implemented.
+
+### Pre-Built Tests
+
+The application comes with a few pre-built unit and end-to-end tests to help verify basic operations.
+
+### Running Pre-Built Tests
+
+You can run the existing tests using the following commands:
+
+#### Run Unit Tests
+
+```bash
+pnpm run test
+```
+
+### Troubleshooting
+
+If you encounter any issues during setup or while running the application, consider the following:
+
+	•	Ensure MongoDB is running: Make sure your MongoDB instance is accessible and the connection string in .env is correct.
+	•	Check Node.js and pnpm versions: Ensure you are using the correct versions of Node.js and pnpm.
+
+### Contributing
+Contributions are welcome! Please feel free to submit a pull request or open an issue happy coding ;)
