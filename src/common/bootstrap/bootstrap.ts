@@ -3,6 +3,7 @@ import { AppModule } from '../../app.module';
 import { ConfigService } from '@nestjs/config';
 import { ValidationPipe, VersioningType, Logger } from '@nestjs/common';
 import helmet from 'helmet';
+import { AddressInfo } from 'net';
 import { useCors } from '../middlewares/cors-setup';
 import { ISwaggerOptions } from '@common/@types';
 import { useSecurityMiddleware } from '@common/middlewares';
@@ -63,9 +64,14 @@ export async function bootstrap(): Promise<void> {
   const port: number = configService.get<number>('PORT', 3000);
   await app.listen(port, () => {
     const server = app.getHttpServer();
-    const address = server.address();
+    const address: string | AddressInfo = server.address() as AddressInfo;
+
     const host: string =
-      typeof address === 'string' ? address : address.address;
+      typeof address === 'string'
+        ? address
+        : address.address === '::'
+          ? 'localhost'
+          : address.address;
 
     Logger.log(`🚀 Notes API is running on: http://${host}:${port}`);
     Logger.log(`📚 Swagger docs available at: http://${host}:${port}/docs`);
