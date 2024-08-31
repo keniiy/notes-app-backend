@@ -29,8 +29,6 @@ git clone https://github.com/yourusername/notes-api.git
 cd notes-api
 ```
 
-
-
 ### 2. Install Dependencies
 
 Install all necessary dependencies using pnpm:
